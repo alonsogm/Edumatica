@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Sistema01.Models.department>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<center><h2 class="titulos">Adm Departamentos</h2></center>
+
+<p>
+    <!--@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info" })-->
+    <button id="Create" onclick="popupDepartmentsCreate()" class="btn btn-primary btn-large fa fa-trash">Nuevo registro</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            <button id="edit" onclick="popupDepartmentsEdit(@item.id)" class="btn btn-primary btn-sm">Modificar</button>
+            <button id="details" onclick="popupDepartmentsDetails(@item.id)" class="btn btn-success btn-sm">Detalle</button>
+            <button id="delete" onclick="popupDepartmentsDelete(@item.id)" class="btn btn-danger btn-sm">Eliminar</button>
+            <!--@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })-->
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Sistema01.Models.employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<center><h2>Adm Empleados</h2></center>
+
+<p>
+    <!--@Html.ActionLink("Create New", "Create")-->
+    <button id="Create" onclick="popupEmployeeCreate()" class="btn btn-primary btn-large fa fa-trash">Nuevo registro</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.department.descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.department.descripcion)
+            </td>
+            <td>
+                <button id="edit" onclick="popupEmployeeEdit(@item.id)" class="btn btn-primary btn-sm">Modificar</button>
+                <button id="details" onclick="popupEmployeeDetails(@item.id)" class="btn btn-success btn-sm">Detalle</button>
+                <button id="delete" onclick="popupEmployeeDelete(@item.id)" class="btn btn-danger btn-sm">Eliminar</button>
+                @Html.ActionLink("PDF", "DownloadViewPDF", "Service", new { id = item.id }, new { @class = "btn btn-primary btn-sm" })
+
+                <!--@Html.ActionLink("Edit", "Edit", new { id=item.id }, new { @class = "btn btn-primary btn-sm" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-primary btn-sm" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger btn-sm" })-->
+            </td>
+        </tr>
+    }
+
+</table>
+
+<a class="btn btn-danger" href="#">
+    <i class="fa fa-trash"></i> Delete
+</a>
+
+@Html.Partial("_Partial1")
+@Html.Partial("_Partial2",(IEnumerable<Sistema01.Models.employee>) ViewBag.data)

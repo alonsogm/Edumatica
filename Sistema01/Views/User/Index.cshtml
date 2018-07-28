@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p>El nombre es: <span style="color: red">@ViewBag.nombre</span>  </p> 
+<p>El departamento es: @ViewBag.departamento</p>
+
+<div id="contenedor1">Texto del contenedor 1</div>
+<div id="contenedor2">Texto del contenedor 2</div>
+<button onclick="GetName()">Aceptar</button>
+
+<table>
+    @{ 
+        for (int i = 0; i<100; i++)
+        {
+            <tr>
+                <td>@i</td>
+                <td>Nombre</td>
+                <td>Direccion</td>
+                <td>Telefono</td>
+            </tr>
+        }
+    }
+</table>
+
+
+
